@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @AllArgsConstructor
-@RequestMapping("/cards")
+@RequestMapping("/groups")
 @RestController
 public class GroupController {
 
