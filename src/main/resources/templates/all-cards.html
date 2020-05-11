@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>All cards</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/cards/cards.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+
+    <h1 class="all-cards-header">All cards</h1>
+    <div id="app"></div>
+    <a href="/"><h3>Main page</h3></a>
+
+    <template id="card-list">
+        <div>
+            <card-view v-for="card in cards" :card="card" :key="card.id"/>
+        </div>
+    </template>
+
+    <template id="card-view">
+        <v-card class="card">
+            <div>
+                <p>{{ card.name }}</p>
+            </div>
+        </v-card>
+    </template>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/all-cards.js"></script>
+</body>
+</html>
