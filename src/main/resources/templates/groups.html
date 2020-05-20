@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>All cards</title>
+    <title>Groups</title>
     <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
     <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
 </head>
@@ -13,6 +13,20 @@
 
     <h1>Groups</h1>
     <div id="app"></div>
+    <a href="/"><h3>Main page</h3></a><br>
+
+    <template id="group-list">
+        <div>
+            <group-view v-for="group in groups" :group="group" :key="group.id"/>
+        </div>
+    </template>
+
+    <template id="group-view">
+        <div>
+            <p>* {{ group.name }}</p>
+        </div>
+        <br>
+    </template>
 
     <script src="/js/api.js"></script>
     <script src="/js/groups.js"></script>
