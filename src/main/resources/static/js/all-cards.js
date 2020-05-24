@@ -17,7 +17,7 @@ new Vue({
     created: function () {
         axios.get(CARDS_URL).then(response => {
             let cardList = response.data;
-            cardList.forEach(card => this.cards.push(card))
+            cardList.forEach(card => this.cards.push(card));
         });
     }
 });

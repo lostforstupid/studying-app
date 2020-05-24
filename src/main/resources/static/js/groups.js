@@ -17,7 +17,7 @@ new Vue({
     created: function () {
         axios.get(GROUPS_URL + ALL).then(response => {
             let groupList = response.data;
-            groupList.forEach(group => this.groups.push(group))
+            groupList.forEach(group => this.groups.push(group));
         });
     }
 });

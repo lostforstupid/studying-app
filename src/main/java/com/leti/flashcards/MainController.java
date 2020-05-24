@@ -24,4 +24,9 @@ public class MainController {
     public String getGroupsPage() {
         return "groups";
     }
+
+    @GetMapping("/create-cards")
+    public String getCreateCardsPage() {
+        return "create-cards";
+    }
 }
