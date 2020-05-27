@@ -9,30 +9,48 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+    <script src="https://unpkg.com/vue-select@latest"></script>
+    <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
 
-    <div id="app"></div>
-
-    <template id="form">
-        <div class="create-cards-form-container">
-            <v-form>
-                <v-select :items="groups"
-                          item-text="name"
-                          label="Choose group"
-                          class="select-group"></v-select>
-                <v-btn class="add-card-button" v-on:click="addNewCard">Add card</v-btn>
-                <new-card v-for="card in cards" :card="card" :key="card.id"/>
-            </v-form>
-        </div>
-    </template>
+    <div id="app">
+        <v-select :options="groups"
+                  label="name"
+                  v-model="selected"
+                  class="select-group"
+                  :clearable="false"></v-select>
+        <v-btn class="add-card-button" v-on:click="addNewCard">Add card</v-btn>
+        <v-btn class="save-cards-button" v-on:click="saveCards">Save cards</v-btn>
+        <new-card v-for="card in cards" :card="card" :key="card.id"/>
+    </div>
 
     <template id="new-card">
-        <v-textarea class="create-cards-textarea" name="input-7-1" label="Front">{{ card.front }}</v-textarea>
-        <v-textarea class="create-cards-textarea" name="input-7-1" label="Back">{{ card.back }}</v-textarea>
+        <div>
+            <v-container class="grey lighten-5 create-card-container">
+                <v-row no-gutters>
+                    <v-col>
+                        <p>{{ card.id }}.</p>
+                    </v-col>
+                    <v-col>
+                        <v-textarea class="create-cards-textarea"
+                                    name="input-7-1"
+                                    label="Front"
+                                    v-model="card.front"></v-textarea>
+                    </v-col>
+                    <v-col>
+                        <v-textarea class="create-cards-textarea"
+                                    name="input-7-1"
+                                    label="Back"
+                                    v-model="card.back"></v-textarea>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
     </template>
 
     <script src="/js/api.js"></script>

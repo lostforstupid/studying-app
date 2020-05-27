@@ -1,16 +1,17 @@
-.create-cards-form-container {
-    padding: 20px;
-}
-
 .select-group {
     width: 300px;
-}
-
-.create-cards-textarea {
-    padding-right: 40px;
 }
 
 .add-card-button {
     padding-top: 40px;
     padding-bottom: 40px;
+}
+
+.create-card-container {
+    float: left;
+}
+
+.create-cards-textarea {
+    padding-right: 40px;
+    width: 500px;
 }

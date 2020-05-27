@@ -1,5 +1,7 @@
+Vue.component('v-select', VueSelect.VueSelect);
+
 Vue.component('new-card', {
-    props: ['id', 'front', 'back'],
+    props: ['card'],
     template: '#new-card'
 });
 
@@ -8,7 +10,7 @@ new Vue({
     data: {
         groups: [],
         cards: [],
-        selected: null
+        selected: null,
     },
     created: function () {
         axios.get(GROUPS_URL + ALL).then(response => {
@@ -18,8 +20,14 @@ new Vue({
         });
     },
     methods: {
-        options() {
-            return this.groups;
+        addNewCard() {
+            this.cards.push({id: this.cards.length, group: null, front: '', back: ''});
+        },
+        saveCards() {
+            this.cards.forEach(card => {
+                card.group = this.selected;
+                console.log(card.front + " " + card.back + " " + card.group.name);
+            });
         }
     }
 });
