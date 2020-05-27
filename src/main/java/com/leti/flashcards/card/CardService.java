@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -18,6 +19,12 @@ public class CardService {
 
     public List<Card> getAllCards() {
         return cardRepository.findAll();
+    }
+
+    public List<Card> getCardsByGroup(Long groupId) {
+        return getAllCards().stream()
+                .filter(card -> groupId.equals(card.getGroup().getId()))
+                .collect(Collectors.toList());
     }
 
     public void saveCards(CardForm cardForm) {

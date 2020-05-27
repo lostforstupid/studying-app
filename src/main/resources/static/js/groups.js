@@ -1,6 +1,11 @@
 Vue.component('group-view', {
     props: ['group'],
-    template: '#group-view'
+    template: '#group-view',
+    methods: {
+        getTestLink() {
+            return TEST + "/" + this.group.id;
+        }
+    }
 });
 
 Vue.component('group-list', {

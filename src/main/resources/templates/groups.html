@@ -23,9 +23,10 @@
 
     <template id="group-view">
         <div>
-            <p>* {{ group.name }}</p>
+            <p>{{ group.name }}</p>
+            <v-btn :href="getTestLink()">Test</v-btn>
+            <br>
         </div>
-        <br>
     </template>
 
     <script src="/js/api.js"></script>
