@@ -11,11 +11,8 @@ new Vue({
         completeButton: false
     },
     created: function () {
-        axios.get(CARDS_URL).then(response => {
-            let cards = response.data;
-            cards.forEach(card => this.cards.push(card));
-            this.currentCard = this.cards[0];
-        });
+        this.cards = cards;
+        this.currentCard = this.cards[0];
     },
     methods: {
         check() {
