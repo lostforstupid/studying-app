@@ -25,8 +25,16 @@ new Vue({
         },
         saveCards() {
             this.cards.forEach(card => {
-                card.group = this.selected;
-                console.log(card.front + " " + card.back + " " + card.group.name);
+                card.groupId = this.selected.id;
+                let formData = new FormData();
+                formData.append('front', card.front);
+                formData.append('back', card.back);
+                formData.append('groupId', card.groupId);
+                instance.post(CARDS_URL, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
             });
         }
     }

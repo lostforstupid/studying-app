@@ -1,7 +1,5 @@
 package com.leti.flashcards.group;
 
-import com.leti.flashcards.card.Card;
-import com.leti.flashcards.card.CardService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -15,7 +13,6 @@ import java.util.Optional;
 public class GroupService {
 
     private GroupRepository groupRepository;
-    private CardService cardService;
 
     public List<Group> getAllGroups() {
         return groupRepository.findAll();
@@ -32,15 +29,6 @@ public class GroupService {
             throw new Exception("Group with id " + groupId + " not found");
         }
         return group;
-    }
-
-    @Transactional
-    @SneakyThrows
-    public void addCardToGroup(Long cardId, Long groupId) {
-        Group group = getGroup(groupId);
-        Card card = cardService.getCard(cardId);
-        group.getCards().add(card);
-        groupRepository.save(group);
     }
 
     @Transactional

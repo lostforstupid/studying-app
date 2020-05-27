@@ -1,5 +1,6 @@
 package com.leti.flashcards.card;
 
+import com.leti.flashcards.group.GroupService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.Optional;
 public class CardService {
 
     private CardRepository cardRepository;
+    private GroupService groupService;
 
     public List<Card> getAllCards() {
         return cardRepository.findAll();
@@ -29,6 +31,14 @@ public class CardService {
             throw new Exception("Card with id " + cardId + " not found");
         }
         return card;
+    }
+
+    public void saveCards(CardForm cardForm) {
+        Card card = new Card();
+        card.setFront(cardForm.getFront());
+        card.setBack(cardForm.getBack());
+        card.setGroup(groupService.getGroup(cardForm.getGroupId()));
+        save(card);
     }
 
     public void save(Card card) {

@@ -2,13 +2,11 @@ package com.leti.flashcards.card;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leti.flashcards.group.Group;
-import com.leti.flashcards.side.Side;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,8 +18,9 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "card", fetch = FetchType.EAGER)
-    private List<Side> sides;
+    private String front;
+
+    private String back;
 
     @ManyToOne
     @JoinColumn(name = "group_id")
