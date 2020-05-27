@@ -29,4 +29,9 @@ public class MainController {
     public String getCreateCardsPage() {
         return "create-cards";
     }
+
+    @GetMapping("/test")
+    public String getTest() {
+        return "test";
+    }
 }

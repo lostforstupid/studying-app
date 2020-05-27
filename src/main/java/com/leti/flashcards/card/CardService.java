@@ -20,19 +20,6 @@ public class CardService {
         return cardRepository.findAll();
     }
 
-    @Transactional
-    @SneakyThrows
-    public Card getCard(Long cardId) {
-        Optional<Card> cardOptional = cardRepository.findById(cardId);
-        Card card;
-        if (cardOptional.isPresent()) {
-            card = cardOptional.get();
-        } else {
-            throw new Exception("Card with id " + cardId + " not found");
-        }
-        return card;
-    }
-
     public void saveCards(CardForm cardForm) {
         Card card = new Card();
         card.setFront(cardForm.getFront());

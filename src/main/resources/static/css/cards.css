@@ -9,3 +9,10 @@
     text-align: center;
     margin: 10px 0 10px 0;
 }
+
+.card-in-test {
+    margin: 30px 0 30px 40px;
+    padding: 30px;
+    height: 300px;
+    width: 500px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/cards.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+
+    <h3>Group: Group name</h3>
+    <div id="app">
+        <div>
+            <v-card class="card-in-test" v-show="front">
+                <p>{{ currentCard.front }}</p>
+            </v-card>
+            <v-card class="card-in-test" v-show="back">
+                <p>{{ currentCard.back }}</p>
+            </v-card>
+            <v-btn v-on:click="check" v-show="checkButton">Check</v-btn>
+            <v-btn v-on:click="next" v-show="nextButton">Next</v-btn>
+            <v-btn href="/" v-show="completeButton">Complete</v-btn>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/test.js"></script>
+</body>
+</html>
