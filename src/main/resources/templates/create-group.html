@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create group</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/groups.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+
+<div id="app">
+    <div>
+        <h1 class="create-group-header">Create new Group:</h1>
+        <v-card class="create-group-card">
+            <v-text-field class="create-group-field"
+                          label="Name"
+                          v-model="group.name"></v-text-field>
+            <v-textarea class="create-group-field"
+                        name="input-7-1"
+                        label="Description"
+                        v-model="group.description"></v-textarea>
+            <v-btn class="save-group-button"
+                   v-on:click="saveGroup">Save</v-btn>
+        </v-card>
+    </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/create-group.js"></script>
+</body>
+</html>

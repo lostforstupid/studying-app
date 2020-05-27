@@ -1,3 +1,22 @@
+.create-group-header {
+    margin: 30px 0 0 40px;
+}
+
+.create-group-card {
+    margin: 40px 0 0 40px;
+    padding-top: 30px;
+    width: 480px;
+}
+
+.create-group-field {
+    margin: 50px 0 0 40px;
+    width: 400px;
+}
+
+.save-group-button {
+    margin: 40px 0 40px 40px;
+}
+
 .select-group {
     width: 300px;
 }
@@ -12,6 +31,5 @@
 }
 
 .create-cards-textarea {
-    padding-right: 40px;
     width: 500px;
 }

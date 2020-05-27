@@ -22,11 +22,6 @@ public class MainController {
         return "main-page";
     }
 
-    @GetMapping("/all-cards")
-    public String getAllCardsPage() {
-        return "all-cards";
-    }
-
     @GetMapping("/groups")
     public String getGroupsPage() {
         return "groups";
@@ -38,8 +33,13 @@ public class MainController {
     }
 
     @GetMapping("/test/{groupId}")
-    public String getTest(Model model, @PathVariable Long groupId) {
+    public String getTestPage(Model model, @PathVariable Long groupId) {
         model.addAttribute(CARDS, cardService.getCardsByGroup(groupId));
         return "test";
+    }
+
+    @GetMapping("create-group")
+    public String getCreateGroupPage() {
+        return "create-group";
     }
 }

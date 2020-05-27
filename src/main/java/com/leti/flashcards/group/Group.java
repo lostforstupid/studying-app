@@ -20,6 +20,8 @@ public class Group {
 
     private String name;
 
+    private String description;
+
     @OneToMany(mappedBy = "group", fetch = FetchType.EAGER)
     private List<Card> cards;
 }

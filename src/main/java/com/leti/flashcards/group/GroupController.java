@@ -4,6 +4,7 @@ import com.leti.flashcards.card.Card;
 import com.leti.flashcards.card.CardService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,14 @@ public class GroupController {
     @GetMapping("/all")
     public List<Group> getAllGroups() {
         return groupService.getAllGroups();
+    }
+
+    @PostMapping
+    public void createGroup(GroupForm groupForm) {
+        Group group = new Group();
+        group.setName(groupForm.getName());
+        group.setDescription(groupForm.getDescription());
+        groupService.createGroup(group);
     }
 
     @GetMapping("/init")

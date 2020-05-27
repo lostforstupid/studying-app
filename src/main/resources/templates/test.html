@@ -25,7 +25,9 @@
                 <p>{{ currentCard.back }}</p>
             </v-card>
             <v-btn v-on:click="check" v-show="checkButton">Check</v-btn>
-            <v-btn v-on:click="next" v-show="nextButton">Next</v-btn>
+            <p v-show="nextButton">Did you answer correctly?</p>
+            <v-btn v-on:click="next" v-show="nextButton">No</v-btn>
+            <v-btn v-on:click="next" v-show="nextButton">Yes</v-btn>
             <v-btn href="/" v-show="completeButton">Complete</v-btn>
         </div>
     </div>
