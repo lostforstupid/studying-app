@@ -4,6 +4,7 @@ new Vue({
         cards: [],
         currentCard: null,
         currentCardIndex: 0,
+        userImgUrl: '',
         front: true,
         back: false,
         checkButton: true,
@@ -13,6 +14,9 @@ new Vue({
     created: function () {
         this.cards = cards;
         this.currentCard = this.cards[0];
+        axios.get(USER_IMG_URL).then(response => {
+            this.userImgUrl = response.data;
+        });
     },
     methods: {
         check() {

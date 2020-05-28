@@ -11,12 +11,16 @@ new Vue({
         groups: [],
         cards: [],
         selected: null,
+        userImgUrl: ''
     },
     created: function () {
         axios.get(GROUPS_URL + ALL).then(response => {
             let groups = response.data;
             groups.forEach(group => this.groups.push(group));
             this.selected = this.groups[0];
+        });
+        axios.get(USER_IMG_URL).then(response => {
+            this.userImgUrl = response.data;
         });
     },
     methods: {

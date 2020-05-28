@@ -4,7 +4,13 @@ new Vue({
         group: {
             name: '',
             description: ''
-        }
+        },
+        userImgUrl: ''
+    },
+    created: function() {
+        axios.get(USER_IMG_URL).then(response => {
+            this.userImgUrl = response.data;
+        });
     },
     methods: {
         saveGroup() {

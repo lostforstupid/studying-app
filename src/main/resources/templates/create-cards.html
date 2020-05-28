@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Create cards</title>
     <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/css/groups.css"/>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
@@ -19,14 +20,26 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
 
     <div id="app">
-        <v-select :options="groups"
-                  label="name"
-                  v-model="selected"
-                  class="select-group"
-                  :clearable="false"></v-select>
-        <v-btn class="add-card-button" v-on:click="addNewCard">Add card</v-btn>
-        <v-btn class="save-cards-button" v-on:click="saveCards">Save cards</v-btn>
-        <new-card v-for="card in cards" :card="card" :key="card.id"/>
+        <div>
+            <v-app-bar dense>
+                <h1>Studying app</h1>
+                <div class="toolbar-buttons">
+                    <v-btn small href="/">Groups</v-btn>
+                    <v-btn small href="/create-group">Create group</v-btn>
+                    <v-btn small href="/create-cards">Create cards</v-btn>
+                </div>
+                <v-spacer></v-spacer>
+                <img class="profile-picture" :src="userImgUrl"/>
+            </v-app-bar>
+            <v-select :options="groups"
+                      label="name"
+                      v-model="selected"
+                      class="select-group"
+                      :clearable="false"></v-select>
+            <v-btn class="add-card-button" v-on:click="addNewCard">Add card</v-btn>
+            <v-btn class="save-cards-button" v-on:click="saveCards">Save cards</v-btn>
+            <new-card v-for="card in cards" :card="card" :key="card.id"/>
+        </div>
     </div>
 
     <template id="new-card">

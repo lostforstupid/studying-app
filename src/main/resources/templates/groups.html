@@ -4,16 +4,32 @@
     <meta charset="UTF-8"/>
     <title>Groups</title>
     <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/groups.css"/>
     <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
 
-    <h1>Groups</h1>
-    <div id="app"></div>
-    <a href="/"><h3>Main page</h3></a><br>
+    <div id="app">
+        <div>
+            <v-app-bar dense>
+                <h1>Studying app</h1>
+                <div class="toolbar-buttons">
+                    <v-btn small href="/">Groups</v-btn>
+                    <v-btn small href="/create-group">Create group</v-btn>
+                    <v-btn small href="/create-cards">Create cards</v-btn>
+                </div>
+                <v-spacer></v-spacer>
+                <img class="profile-picture" :src="userImgUrl"/>
+            </v-app-bar>
+            <group-list :groups="groups"/>
+            <a href="/"><h3>Main page</h3></a><br>
+        </div>
+    </div>
 
     <template id="group-list">
         <div>

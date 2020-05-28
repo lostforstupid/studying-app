@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Test</title>
     <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/css/cards.css"/>
     <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
 
@@ -18,6 +19,16 @@
 
     <div id="app">
         <div>
+            <v-app-bar dense>
+                <h1>Studying app</h1>
+                <div class="toolbar-buttons">
+                    <v-btn small href="/">Groups</v-btn>
+                    <v-btn small href="/create-group">Create group</v-btn>
+                    <v-btn small href="/create-cards">Create cards</v-btn>
+                </div>
+                <v-spacer></v-spacer>
+                <img class="profile-picture" :src="userImgUrl"/>
+            </v-app-bar>
             <v-card class="card-in-test" v-show="front">
                 <p>{{ currentCard.front }}</p>
             </v-card>

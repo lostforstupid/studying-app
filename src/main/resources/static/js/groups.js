@@ -15,14 +15,17 @@ Vue.component('group-list', {
 
 new Vue({
     el: '#app',
-    template: '<group-list :groups="groups"/>',
     data: {
         groups: [],
+        userImgUrl: ''
     },
     created: function () {
         axios.get(GROUPS_URL + ALL).then(response => {
             let groupList = response.data;
             groupList.forEach(group => this.groups.push(group));
+        });
+        axios.get(USER_IMG_URL).then(response => {
+            this.userImgUrl = response.data;
         });
     }
 });
