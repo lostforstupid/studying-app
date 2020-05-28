@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
+@Transactional
 @Service
 public class GroupService {
 
@@ -18,7 +19,6 @@ public class GroupService {
         return groupRepository.findAll();
     }
 
-    @Transactional
     @SneakyThrows
     public Group getGroup(Long groupId) {
         Optional<Group> groupOptional = groupRepository.findById(groupId);
@@ -31,7 +31,6 @@ public class GroupService {
         return group;
     }
 
-    @Transactional
     @SneakyThrows
     public void createGroup(Group newGroup) {
         String groupName = newGroup.getName();

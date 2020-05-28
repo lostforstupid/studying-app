@@ -7,9 +7,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RequestMapping("/groups")
@@ -19,8 +21,19 @@ public class GroupController {
     private GroupService groupService;
 
     @GetMapping("/all")
-    public List<Group> getAllGroups() {
-        return groupService.getAllGroups();
+    @ResponseBody
+    public String getAllGroups() {
+        List<String> groupsAsStrings = groupService.getAllGroups().stream()
+                .map(group -> new GroupView(group.getId(), group.getName(), group.getDescription()))
+                .map(GroupView::toString)
+                .collect(Collectors.toList());
+        StringBuilder builder = new StringBuilder("[");
+        for (String groupAsString : groupsAsStrings) {
+            builder.append(groupAsString)
+                    .append(", ");
+        }
+        String result = builder.substring(0, builder.length() - 2);
+        return result + "]";
     }
 
     @PostMapping

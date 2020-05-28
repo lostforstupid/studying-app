@@ -22,11 +22,19 @@
     </template>
 
     <template id="group-view">
-        <div>
-            <p>{{ group.name }}</p>
-            <v-btn :href="getTestLink()">Test</v-btn>
-            <br>
-        </div>
+            <v-container class="grey lighten-5 create-card-container">
+                <v-row no-gutters>
+                    <v-col>
+                        <p>{{ group.name }}</p>
+                    </v-col>
+                    <v-col>
+                        <p>{{ group.description }}</p>
+                    </v-col>
+                    <v-col>
+                        <v-btn :href="getTestLink()">Test</v-btn>
+                    </v-col>
+                </v-row>
+            </v-container>
     </template>
 
     <script src="/js/api.js"></script>
