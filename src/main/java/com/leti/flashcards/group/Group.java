@@ -1,11 +1,20 @@
 package com.leti.flashcards.group;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leti.flashcards.card.Card;
+import com.leti.flashcards.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @AllArgsConstructor
@@ -21,6 +30,11 @@ public class Group {
     private String name;
 
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     @OneToMany(mappedBy = "group", fetch = FetchType.EAGER)
     private List<Card> cards;
