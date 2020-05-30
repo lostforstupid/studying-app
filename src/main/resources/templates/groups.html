@@ -32,25 +32,19 @@
     </div>
 
     <template id="group-list">
-        <div>
+        <div class="group-cards">
             <group-view v-for="group in groups" :group="group" :key="group.id"/>
         </div>
     </template>
 
     <template id="group-view">
-            <v-container class="grey lighten-5 create-card-container">
-                <v-row no-gutters>
-                    <v-col>
-                        <p>{{ group.name }}</p>
-                    </v-col>
-                    <v-col>
-                        <p>{{ group.description }}</p>
-                    </v-col>
-                    <v-col>
-                        <v-btn :href="getTestLink()">Test</v-btn>
-                    </v-col>
-                </v-row>
-            </v-container>
+        <v-card class="group-card">
+            <v-card-title>{{ group.name }}</v-card-title>
+            <v-card-text>{{ group.description }}</v-card-text>
+            <v-card-actions class="group-card-actions">
+                <v-btn class="group-card-button" :href="getTestLink()">Test</v-btn>
+            </v-card-actions>
+        </v-card>
     </template>
 
     <script src="/js/api.js"></script>

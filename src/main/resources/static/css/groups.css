@@ -1,3 +1,25 @@
+.group-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.group-card {
+    margin: 20px 0 0 20px;
+    padding: 20px 20px 70px 20px;
+    position: relative;
+    width: 300px;
+}
+
+.group-card-actions {
+    position: absolute;
+    bottom: 0;
+}
+
+.group-card-button {
+    margin-bottom: 20px;
+}
+
 .create-group-header {
     margin: 30px 0 0 40px;
 }
