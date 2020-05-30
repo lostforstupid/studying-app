@@ -41,4 +41,8 @@ public class GroupService {
             throw new Exception("Group with name '" + groupName + "' already exists");
         }
     }
+
+    public void deleteGroup(Long id) {
+        groupRepository.deleteById(id);
+    }
 }

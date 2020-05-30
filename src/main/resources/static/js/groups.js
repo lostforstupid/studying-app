@@ -4,6 +4,11 @@ Vue.component('group-view', {
     methods: {
         getTestLink() {
             return TEST + "/" + this.group.id;
+        },
+        deleteGroup() {
+            axios.delete(GROUPS_URL + "/" + this.group.id).then(function () {
+                window.location.reload();
+            });
         }
     }
 });

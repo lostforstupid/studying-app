@@ -43,6 +43,7 @@
             <v-card-text>{{ group.description }}</v-card-text>
             <v-card-actions class="group-card-actions">
                 <v-btn class="group-card-button" :href="getTestLink()">Test</v-btn>
+                <v-btn class="group-card-button" v-on:click="deleteGroup()">Delete</v-btn>
             </v-card-actions>
         </v-card>
     </template>

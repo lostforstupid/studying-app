@@ -36,7 +36,7 @@ public class Group {
     @JsonIgnore
     private User user;
 
-    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Card> cards;
 
     @Override

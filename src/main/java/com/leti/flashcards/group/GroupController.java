@@ -4,7 +4,9 @@ import com.leti.flashcards.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,6 +45,11 @@ public class GroupController {
         group.setDescription(groupForm.getDescription());
         group.setUser(getCurrentUser());
         groupService.createGroup(group);
+    }
+
+    @DeleteMapping("/{groupId}")
+    public void deleteGroup(@PathVariable Long groupId) {
+        groupService.deleteGroup(groupId);
     }
 
     private User getCurrentUser() {
