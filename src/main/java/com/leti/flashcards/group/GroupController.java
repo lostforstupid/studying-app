@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +46,11 @@ public class GroupController {
         group.setDescription(groupForm.getDescription());
         group.setUser(getCurrentUser());
         groupService.createGroup(group);
+    }
+
+    @PutMapping("/{groupId}")
+    public void updateGroup(@PathVariable Long groupId, GroupForm groupForm) {
+        groupService.updateGroup(groupId, groupForm);
     }
 
     @DeleteMapping("/{groupId}")

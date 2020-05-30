@@ -5,6 +5,9 @@ Vue.component('group-view', {
         getTestLink() {
             return TEST + "/" + this.group.id;
         },
+        getEditGroupLink() {
+            return EDIT_GROUP + "/" + this.group.id;
+        },
         deleteGroup() {
             axios.delete(GROUPS_URL + "/" + this.group.id).then(function () {
                 window.location.reload();

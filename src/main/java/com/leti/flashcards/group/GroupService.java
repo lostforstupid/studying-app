@@ -42,6 +42,13 @@ public class GroupService {
         }
     }
 
+    public void updateGroup(Long groupId, GroupForm groupForm) {
+        Group group = getGroup(groupId);
+        group.setName(groupForm.getName());
+        group.setDescription(groupForm.getDescription());
+        groupRepository.save(group);
+    }
+
     public void deleteGroup(Long id) {
         groupRepository.deleteById(id);
     }

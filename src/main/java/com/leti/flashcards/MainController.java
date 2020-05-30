@@ -1,6 +1,9 @@
 package com.leti.flashcards;
 
 import com.leti.flashcards.card.CardService;
+import com.leti.flashcards.group.Group;
+import com.leti.flashcards.group.GroupService;
+import com.leti.flashcards.group.GroupView;
 import com.leti.flashcards.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -18,8 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
     private static String CARDS = "cards";
+    private static String EXISTING_GROUP = "existingGroup";
 
     private CardService cardService;
+    private GroupService groupService;
 
     @GetMapping
     public String getGroupsPage() {
@@ -39,6 +44,14 @@ public class MainController {
 
     @GetMapping("create-group")
     public String getCreateGroupPage() {
+        return "create-group";
+    }
+
+    @GetMapping("edit-group/{groupId}")
+    public String getEditGroupPage(Model model, @PathVariable Long groupId) {
+        Group group = groupService.getGroup(groupId);
+        GroupView groupView = new GroupView(group.getId(), group.getName(), group.getDescription());
+        model.addAttribute(EXISTING_GROUP, groupView);
         return "create-group";
     }
 
