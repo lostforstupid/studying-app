@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,6 +27,10 @@ public class Card {
     private String front;
 
     private String back;
+
+    private Date nextStudySessionTime;
+
+    private long amountCorrectAnswers;
 
     @ManyToOne
     @JoinColumn(name = "group_id")
