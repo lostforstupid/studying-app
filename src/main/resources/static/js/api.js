@@ -8,6 +8,7 @@ const ALL = '/all';
 const SAVE_CORRECT_TEST_RESULT = '/save-correct-test-result';
 const SAVE_WRONG_TEST_RESULT = '/save-wrong-test-result';
 const EDIT_GROUP = "/edit-group";
+const IS_GROUP_HAS_CARDS = "/has-cards";
 
 const instance = axios.create({
     baseURL: BASE_URL,

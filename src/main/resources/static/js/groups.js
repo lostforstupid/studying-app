@@ -2,8 +2,16 @@ Vue.component('group-view', {
     props: ['group'],
     template: '#group-view',
     methods: {
-        getTestLink() {
-            return TEST + "/" + this.group.id;
+        test() {
+            axios.get(GROUPS_URL + IS_GROUP_HAS_CARDS + "/" + this.group.id).then(response => {
+                let isGroupHasCards = response.data;
+                console.log(isGroupHasCards);
+                if (isGroupHasCards) {
+                    window.location.href = TEST + "/" + this.group.id;
+                } else {
+                    alert("Group " + this.group.name + " doesn't have any cards");
+                }
+            });
         },
         getEditGroupLink() {
             return EDIT_GROUP + "/" + this.group.id;

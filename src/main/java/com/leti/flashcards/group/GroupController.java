@@ -1,5 +1,6 @@
 package com.leti.flashcards.group;
 
+import com.leti.flashcards.card.CardService;
 import com.leti.flashcards.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class GroupController {
 
     private GroupService groupService;
+    private CardService cardService;
 
     @GetMapping("/all")
     @ResponseBody
@@ -37,6 +39,11 @@ public class GroupController {
         }
         String result = builder.substring(0, builder.length() - 2);
         return result + "]";
+    }
+
+    @GetMapping("/has-cards/{groupId}")
+    public boolean isGroupHasCards(@PathVariable Long groupId) {
+        return cardService.getCardsByGroup(groupId).size() > 0;
     }
 
     @PostMapping
