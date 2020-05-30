@@ -2,7 +2,12 @@ Vue.component('v-select', VueSelect.VueSelect);
 
 Vue.component('new-card', {
     props: ['card'],
-    template: '#new-card'
+    template: '#new-card',
+    methods: {
+        removeCard(cardId) {
+            this.$parent.removeCard(cardId);
+        }
+    }
 });
 
 new Vue({
@@ -25,7 +30,7 @@ new Vue({
     },
     methods: {
         addNewCard() {
-            this.cards.push({id: this.cards.length, group: null, front: '', back: ''});
+            this.cards.push({id: this.cards.length + 1, group: null, front: '', back: ''});
         },
         saveCards() {
             this.cards.forEach(card => {
@@ -39,6 +44,14 @@ new Vue({
                         'Content-Type': 'multipart/form-data'
                     }
                 });
+            });
+        },
+        removeCard(cardId) {
+            this.cards.splice(cardId - 1, 1);
+            let index = 1;
+            this.cards.forEach(card => {
+                card.id = index;
+                index++;
             });
         }
     }
