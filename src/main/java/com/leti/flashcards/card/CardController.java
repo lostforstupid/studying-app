@@ -1,9 +1,11 @@
 package com.leti.flashcards.card;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,14 +19,24 @@ public class CardController {
 
     private CardService cardService;
 
-    @GetMapping
-    public List<Card> getAllCards() {
-        return cardService.getAllCards();
+    @GetMapping("/{groupId}")
+    public List<Card> getCardsByGroup(@PathVariable Long groupId) {
+        return cardService.getCardsByGroup(groupId);
     }
 
     @PostMapping
-    public void saveCards(CardForm cardForm) {
-        cardService.saveCards(cardForm);
+    public void saveCard(CardForm cardForm) {
+        cardService.createCard(cardForm);
+    }
+
+    @PutMapping("/{cardId}")
+    public void updateCard(CardForm cardForm, @PathVariable Long cardId) {
+        cardService.updateCard(cardForm, cardId);
+    }
+
+    @DeleteMapping("/{cardId}")
+    public void deleteCard(@PathVariable Long cardId) {
+        cardService.delete(cardId);
     }
 
     @PostMapping("/save-correct-test-result/{cardId}")

@@ -34,17 +34,37 @@ public class CardService {
         return cardRepository.findById(id).orElseThrow(() -> new Exception("No card with such id"));
     }
 
-    public void saveCards(CardForm cardForm) {
+    public void createCard(CardForm cardForm) {
         Card card = new Card();
-        card.setFront(cardForm.getFront());
-        card.setBack(cardForm.getBack());
-        card.setNextStudySessionTime(new Date());
-        card.setAmountCorrectAnswers(0);
-        card.setGroup(groupService.getGroup(cardForm.getGroupId()));
+        fillCardFields(card, cardForm);
+        save(card);
+    }
+
+    public void updateCard(CardForm cardForm, Long cardId) {
+        Card card = getCard(cardId);
+        fillCardFields(card, cardForm);
         save(card);
     }
 
     public void save(Card card) {
         cardRepository.save(card);
+    }
+
+    public void delete(Long cardId) {
+        cardRepository.deleteById(cardId);
+    }
+
+    private void fillCardFields(Card card, CardForm cardForm) {
+        String front = cardForm.getFront();
+        String cardFront = card.getFront();
+        String back = cardForm.getBack();
+        String cardBack = card.getBack();
+        if (!front.equalsIgnoreCase(cardFront) || !back.equalsIgnoreCase(cardBack)) {
+            card.setFront(front);
+            card.setBack(back);
+            card.setNextStudySessionTime(new Date());
+            card.setAmountCorrectAnswers(0);
+        }
+        card.setGroup(groupService.getGroup(cardForm.getGroupId()));
     }
 }

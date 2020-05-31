@@ -1,5 +1,6 @@
 package com.leti.flashcards;
 
+import com.leti.flashcards.card.Card;
 import com.leti.flashcards.card.CardService;
 import com.leti.flashcards.group.Group;
 import com.leti.flashcards.group.GroupService;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @RequestMapping("/")
 @AllArgsConstructor
 @Controller
@@ -22,6 +25,7 @@ public class MainController {
 
     private static String CARDS = "cards";
     private static String EXISTING_GROUP = "existingGroup";
+    private static String EXISTING_CARDS = "existingCards";
 
     private CardService cardService;
     private GroupService groupService;
@@ -53,6 +57,13 @@ public class MainController {
         GroupView groupView = new GroupView(group.getId(), group.getName(), group.getDescription());
         model.addAttribute(EXISTING_GROUP, groupView);
         return "create-group";
+    }
+
+    @GetMapping("/edit-cards/{groupId}")
+    public String getEditCardsPage(Model model, @PathVariable Long groupId) {
+        List<Card> cardsByGroup = cardService.getCardsByGroup(groupId);
+        model.addAttribute(EXISTING_CARDS, cardsByGroup);
+        return "create-cards";
     }
 
     @GetMapping("user-img-url")

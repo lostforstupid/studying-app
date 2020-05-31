@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Create cards</title>
@@ -14,6 +14,11 @@
 
     <script src="https://unpkg.com/vue-select@latest"></script>
     <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
+
+    <script th:inline="javascript">
+        let existingCards = [[${existingCards}]];
+        let groupId = [[${groupId}]];
+    </script>
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -36,9 +41,10 @@
                       label="name"
                       v-model="selected"
                       class="select-group"
-                      :clearable="false"></v-select>
+                      :clearable="false"
+                      v-if="chooseGroups"></v-select>
             <v-btn class="add-card-button" v-on:click="addNewCard">Add card</v-btn>
-            <v-btn class="save-cards-button" v-on:click="saveCards">Save cards</v-btn>
+            <v-btn class="save-cards-button" v-on:click="saveCards()">Save cards</v-btn>
             <new-card v-for="card in cards" :card="card" :key="card.id"/>
         </div>
     </div>
@@ -48,7 +54,7 @@
             <v-container class="grey lighten-5 create-card-container">
                 <v-row no-gutters>
                     <v-col>
-                        <p>{{ card.id }}.</p>
+                        <p>{{ card.index }}.</p>
                     </v-col>
                     <v-col>
                         <v-textarea class="create-cards-textarea"
@@ -63,7 +69,7 @@
                                     v-model="card.back"></v-textarea>
                     </v-col>
                     <v-col>
-                        <v-btn v-on:click="removeCard(card.id)" class="remove-card-button">Remove</v-btn>
+                        <v-btn v-on:click="removeCard(card.index, card.id)" class="remove-card-button">Remove</v-btn>
                     </v-col>
                 </v-row>
             </v-container>

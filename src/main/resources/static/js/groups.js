@@ -16,6 +16,9 @@ Vue.component('group-view', {
         getEditGroupLink() {
             return EDIT_GROUP + "/" + this.group.id;
         },
+        getEditCardsLink() {
+            return EDIT_CARDS + "/" + this.group.id;
+        },
         deleteGroup() {
             if (confirm("All cards in this group will be deleted. " +
                 "Do you still want to delete the group?")) {

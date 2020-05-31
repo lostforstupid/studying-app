@@ -4,8 +4,8 @@ Vue.component('new-card', {
     props: ['card'],
     template: '#new-card',
     methods: {
-        removeCard(cardId) {
-            this.$parent.removeCard(cardId);
+        removeCard(index, id) {
+            this.$parent.removeCard(index, id);
         }
     }
 });
@@ -14,45 +14,78 @@ new Vue({
     el: '#app',
     data: {
         groups: [],
+        chooseGroups: true,
         cards: [],
+        idsOfCardsToDelete: [],
         selected: null,
         userImgUrl: ''
     },
     created: function () {
-        axios.get(GROUPS_URL + ALL).then(response => {
-            let groups = response.data;
-            groups.forEach(group => this.groups.push(group));
-            this.selected = this.groups[0];
-        });
+        if (existingCards != null) {
+            axios.get(CARDS_URL + "/" + groupId).then(response => {
+                let cards = response.data;
+                let index = 1;
+                cards.forEach(card => {
+                    card.index = index;
+                    index++;
+                    this.cards.push(card);
+                });
+            });
+            this.chooseGroups = false;
+            this.selected = {id: groupId};
+        } else {
+            axios.get(GROUPS_URL + ALL).then(response => {
+                let groups = response.data;
+                groups.forEach(group => this.groups.push(group));
+                this.selected = this.groups[0];
+            });
+        }
         axios.get(USER_IMG_URL).then(response => {
             this.userImgUrl = response.data;
         });
     },
     methods: {
         addNewCard() {
-            this.cards.push({id: this.cards.length + 1, group: null, front: '', back: ''});
+            this.cards.push({index: this.cards.length + 1, group: null, front: '', back: ''});
         },
         saveCards() {
             this.cards.forEach(card => {
-                card.groupId = this.selected.id;
                 let formData = new FormData();
                 formData.append('front', card.front);
                 formData.append('back', card.back);
-                formData.append('groupId', card.groupId);
-                instance.post(CARDS_URL, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
+                formData.append('groupId', this.selected.id);
+                if (card.id != null) {
+                    instance.put(CARDS_URL + "/" + card.id, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    });
+                } else {
+                    instance.post(CARDS_URL, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    });
+                }
+                this.deleteCards();
             });
         },
-        removeCard(cardId) {
-            this.cards.splice(cardId - 1, 1);
-            let index = 1;
-            this.cards.forEach(card => {
-                card.id = index;
-                index++;
+        deleteCards() {
+            this.idsOfCardsToDelete.forEach(id => {
+                console.log(id);
+                axios.delete(CARDS_URL + "/" + id);
             });
+        },
+        removeCard(index, id) {
+            let deletedCard = this.cards.splice(index - 1, 1);
+            let newIndex = 1;
+            this.cards.forEach(card => {
+                card.index = newIndex;
+                newIndex++;
+            });
+            if (id != null) {
+                this.idsOfCardsToDelete.push(id);
+            }
         }
     }
 });
