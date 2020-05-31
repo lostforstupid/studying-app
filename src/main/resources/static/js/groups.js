@@ -17,9 +17,12 @@ Vue.component('group-view', {
             return EDIT_GROUP + "/" + this.group.id;
         },
         deleteGroup() {
-            axios.delete(GROUPS_URL + "/" + this.group.id).then(function () {
-                window.location.reload();
-            });
+            if (confirm("All cards in this group will be deleted. " +
+                "Do you still want to delete the group?")) {
+                axios.delete(GROUPS_URL + "/" + this.group.id).then(function () {
+                    window.location.reload();
+                });
+            }
         }
     }
 });
