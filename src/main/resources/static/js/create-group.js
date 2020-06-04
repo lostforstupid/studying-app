@@ -5,11 +5,15 @@ new Vue({
             name: '',
             description: ''
         },
+        userName: '',
         userImgUrl: ''
     },
     created: function() {
         axios.get(USER_IMG_URL).then(response => {
             this.userImgUrl = response.data;
+        });
+        axios.get(USER_NAME_URL).then(response => {
+            this.userName = response.data;
         });
         if (existingGroup != null) {
             this.group.name = existingGroup.name;

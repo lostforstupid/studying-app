@@ -17,6 +17,10 @@
     position: relative;
 }
 
+.card-index {
+    margin-top: 7px;
+}
+
 .remove-card-button {
     margin-left: 25px;
 }

@@ -5,6 +5,7 @@ new Vue({
         testResults: [],
         currentCard: null,
         currentCardIndex: 0,
+        userName: '',
         userImgUrl: '',
         front: true,
         back: false,
@@ -17,6 +18,9 @@ new Vue({
         this.currentCard = this.cards[0];
         axios.get(USER_IMG_URL).then(response => {
             this.userImgUrl = response.data;
+        });
+        axios.get(USER_NAME_URL).then(response => {
+            this.userName = response.data;
         });
     },
     methods: {

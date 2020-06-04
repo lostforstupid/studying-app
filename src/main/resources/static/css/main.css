@@ -1,5 +1,9 @@
 .app-bar {
-    background-color: #FFF9C4 !important;
+    background-color: #ededed !important;
+}
+
+.app-bar-header {
+    margin: 29px 0 0 5px;
 }
 
 .toolbar-buttons {
@@ -8,15 +12,14 @@
 
 .user-name {
     font-family: Times New Roman, Times, serif;
-    font-size: 15px;
-    margin-top: 40px;
-    margin-right: 20px;
+    font-size: 12px;
+    margin: 39px 20px 0 0;
 }
 
 .profile-picture {
     height: 35px;
     border-radius: 50%;
-    margin-top: 27px;
+    margin: 27px 5px 0 0;
 }
 
 button {

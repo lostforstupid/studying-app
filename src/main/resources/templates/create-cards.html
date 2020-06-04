@@ -28,14 +28,14 @@
     <div id="app">
         <div>
             <v-app-bar class="app-bar" dense prominent>
-                <v-toolbar-title>Flashcards</v-toolbar-title>
+                <h1 class="app-bar-header">Flashcards</h1>
                 <div class="toolbar-buttons">
                     <v-btn text href="/">Groups</v-btn>
                     <v-btn text href="/create-group">Create group</v-btn>
                     <v-btn text href="/create-cards">Create cards</v-btn>
                 </div>
                 <v-spacer></v-spacer>
-                <p class="user-name">{{ userName }}</p>
+                <p class="user-name">{{ userName.toUpperCase() }}</p>
                 <img class="profile-picture" :src="userImgUrl"/>
             </v-app-bar>
             <v-select :options="groups"
@@ -44,8 +44,8 @@
                       class="select-group"
                       :clearable="false"
                       v-if="chooseGroups"></v-select>
-            <v-btn class="add-card-button" v-on:click="addNewCard">Add card</v-btn>
-            <v-btn class="save-cards-button" v-on:click="saveCards()">Save cards</v-btn>
+            <v-btn text class="add-card-button" v-on:click="addNewCard">Add card</v-btn>
+            <v-btn text class="save-cards-button" v-on:click="saveCards()">Save cards</v-btn>
             <new-card v-for="card in cards" :card="card" :key="card.id"/>
         </div>
     </div>
@@ -55,7 +55,7 @@
             <v-container class="grey lighten-5 create-card-container">
                 <v-row no-gutters>
                     <v-col>
-                        <p>{{ card.index }}.</p>
+                        <p class="card-index">{{ card.index }}.</p>
                     </v-col>
                     <v-col>
                         <v-textarea class="create-cards-textarea"
@@ -70,7 +70,7 @@
                                     v-model="card.back"></v-textarea>
                     </v-col>
                     <v-col>
-                        <v-btn v-on:click="removeCard(card.index, card.id)" class="remove-card-button">Remove</v-btn>
+                        <v-btn text v-on:click="removeCard(card.index, card.id)" class="remove-card-button">Remove</v-btn>
                     </v-col>
                 </v-row>
             </v-container>

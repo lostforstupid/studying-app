@@ -20,14 +20,15 @@
 
     <div id="app">
         <div>
-            <v-app-bar dense>
-                <h1>Studying app</h1>
+            <v-app-bar class="app-bar" dense prominent>
+                <h1 class="app-bar-header">Flashcards</h1>
                 <div class="toolbar-buttons">
-                    <v-btn small href="/">Groups</v-btn>
-                    <v-btn small href="/create-group">Create group</v-btn>
-                    <v-btn small href="/create-cards">Create cards</v-btn>
+                    <v-btn text href="/">Groups</v-btn>
+                    <v-btn text href="/create-group">Create group</v-btn>
+                    <v-btn text href="/create-cards">Create cards</v-btn>
                 </div>
                 <v-spacer></v-spacer>
+                <p class="user-name">{{ userName }}</p>
                 <img class="profile-picture" :src="userImgUrl"/>
             </v-app-bar>
             <group-list :groups="groups"/>

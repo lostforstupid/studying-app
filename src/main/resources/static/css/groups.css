@@ -53,18 +53,16 @@
 }
 
 .select-group {
-    margin: 30px 0 30px 40px;
+    margin: 40px 0 0 40px;
     width: 300px;
 }
 
 .add-card-button {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    margin-left: 40px;
+    margin: 25px 0 20px 40px;
 }
 
 .save-cards-button {
-    margin-left: 20px;
+    margin: 25px 0 20px 20px;
 }
 
 .create-card-container {
