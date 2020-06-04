@@ -73,6 +73,7 @@ new Vue({
                 }
                 this.deleteCards();
             });
+            window.location.href = "/";
         },
         deleteCards() {
             this.idsOfCardsToDelete.forEach(id => {

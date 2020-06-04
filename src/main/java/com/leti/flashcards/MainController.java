@@ -46,6 +46,12 @@ public class MainController {
         return "test";
     }
 
+    @GetMapping("/quick-test")
+    public String getQuickTestPage(Model model) {
+        model.addAttribute(CARDS, cardService.getQuickTestCards());
+        return "test";
+    }
+
     @GetMapping("create-group")
     public String getCreateGroupPage() {
         return "create-group";

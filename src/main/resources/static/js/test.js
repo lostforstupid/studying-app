@@ -57,12 +57,16 @@ new Vue({
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
+                    }).then(function() {
+                        window.location.href = "/";
                     });
                 } else {
                     instance.post(CARDS_URL + SAVE_WRONG_TEST_RESULT + "/" + testResult.cardId, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
+                    }).then(function() {
+                        window.location.href = "/";
                     });
                 }
             });

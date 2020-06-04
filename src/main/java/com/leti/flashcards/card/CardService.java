@@ -29,6 +29,12 @@ public class CardService {
                 .collect(Collectors.toList());
     }
 
+    public List<Card> getQuickTestCards() {
+        return getAllCards().stream()
+                .filter(card -> card.getAmountCorrectAnswers() == 0)
+                .collect(Collectors.toList());
+    }
+
     @SneakyThrows
     public Card getCard(Long id) {
         return cardRepository.findById(id).orElseThrow(() -> new Exception("No card with such id"));

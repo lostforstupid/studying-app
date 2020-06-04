@@ -24,11 +24,12 @@
                 <h1 class="app-bar-header">Flashcards</h1>
                 <div class="toolbar-buttons">
                     <v-btn text href="/">Groups</v-btn>
+                    <v-btn text href="/quick-test">Quick test</v-btn>
                     <v-btn text href="/create-group">Create group</v-btn>
                     <v-btn text href="/create-cards">Create cards</v-btn>
                 </div>
                 <v-spacer></v-spacer>
-                <p class="user-name">{{ userName }}</p>
+                <p class="user-name">{{ userName.toUpperCase() }}</p>
                 <img class="profile-picture" :src="userImgUrl"/>
             </v-app-bar>
             <group-list :groups="groups"/>
