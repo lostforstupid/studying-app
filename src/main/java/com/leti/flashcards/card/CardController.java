@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -42,20 +43,24 @@ public class CardController {
     @PostMapping("/save-correct-test-result/{cardId}")
     public void saveCorrectTestResult(@PathVariable Long cardId) {
         Card card = cardService.getCard(cardId);
-        // calculate next study session time
-        card.setNextStudySessionTime(new Date());
-        long amountCorrectAnswers = card.getAmountCorrectAnswers();
-        amountCorrectAnswers++;
-        card.setAmountCorrectAnswers(amountCorrectAnswers);
+        int lastInterval = card.getLastInterval();
+        int interval = (lastInterval * 2) + 1;
+        card.setLastInterval(interval);
+
+        Date lastStudySessionTime = card.getNextStudySessionTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(lastStudySessionTime);
+        calendar.add(Calendar.DATE, interval);
+        card.setNextStudySessionTime(calendar.getTime());
+
         cardService.save(card);
     }
 
     @PostMapping("/save-wrong-test-result/{cardId}")
     public void saveWrongTestResult(@PathVariable Long cardId) {
         Card card = cardService.getCard(cardId);
-        // +10 mins
         card.setNextStudySessionTime(new Date());
-        card.setAmountCorrectAnswers(0);
+        card.setLastInterval(0);
         cardService.save(card);
     }
 }

@@ -30,7 +30,7 @@ public class Card {
 
     private Date nextStudySessionTime;
 
-    private long amountCorrectAnswers;
+    private int lastInterval;
 
     @ManyToOne
     @JoinColumn(name = "group_id")

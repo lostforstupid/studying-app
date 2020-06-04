@@ -31,7 +31,7 @@ public class CardService {
 
     public List<Card> getQuickTestCards() {
         return getAllCards().stream()
-                .filter(card -> card.getAmountCorrectAnswers() == 0)
+                .filter(card -> card.getLastInterval() == 0)
                 .collect(Collectors.toList());
     }
 
@@ -69,7 +69,7 @@ public class CardService {
             card.setFront(front);
             card.setBack(back);
             card.setNextStudySessionTime(new Date());
-            card.setAmountCorrectAnswers(0);
+            card.setLastInterval(0);
         }
         card.setGroup(groupService.getGroup(cardForm.getGroupId()));
     }
