@@ -4,6 +4,7 @@ const CARDS_URL = '/cards';
 const GROUPS_URL = '/groups';
 const TEST = "/test";
 const USER_IMG_URL = "/user-img-url";
+const USER_NAME_URL = "/user-name-url";
 const ALL = '/all';
 const SAVE_CORRECT_TEST_RESULT = '/save-correct-test-result';
 const SAVE_WRONG_TEST_RESULT = '/save-wrong-test-result';

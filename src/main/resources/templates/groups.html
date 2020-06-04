@@ -7,6 +7,10 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/css/groups.css"/>
     <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <!-- font and icons -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
@@ -39,13 +43,13 @@
 
     <template id="group-view">
         <v-card class="group-card">
-            <v-card-title>{{ group.name }}</v-card-title>
-            <v-card-text>{{ group.description }}</v-card-text>
+            <v-card-title class="group-card-title">{{ group.name }}</v-card-title>
+            <v-card-text class="group-card-text">{{ group.description }}</v-card-text>
             <v-card-actions class="group-card-actions">
-                <v-btn class="group-card-button" v-on:click="test()">Test</v-btn>
-                <v-btn class="group-card-button" :href="getEditGroupLink()">Edit group</v-btn><br>
-                <v-btn class="group-card-button" :href="getEditCardsLink()">Edit cards</v-btn>
-                <v-btn class="group-card-button" v-on:click="deleteGroup()">Delete</v-btn>
+                <v-btn text small class="group-card-button" v-on:click="test()">Test</v-btn>
+                <v-btn text small class="group-card-button" :href="getEditGroupLink()">Edit group</v-btn>
+                <v-btn text small class="group-card-button" :href="getEditCardsLink()">Edit cards</v-btn>
+                <v-btn text small class="group-card-button" v-on:click="deleteGroup()">Delete</v-btn>
             </v-card-actions>
         </v-card>
     </template>

@@ -18,6 +18,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableOAuth2Sso
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String SUB = "sub";
+    private static final String NAME = "name";
+    public static final String EMAIL = "email";
+    public static final String PICTURE = "picture";
+
     private final UserRepository userRepository;
 
     @SneakyThrows
@@ -36,17 +41,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PrincipalExtractor principalExtractor() {
         return map -> {
-            String id = (String) map.get("sub");
+            String id = (String) map.get(SUB);
 
             return userRepository.findById(id).orElseGet(() -> {
-
                 User newUser = new User();
-
                 newUser.setId(id);
-                newUser.setName((String) map.get("name"));
-                newUser.setEmail((String) map.get("email"));
-                newUser.setProfilePictureUrl((String) map.get("picture"));
-
+                newUser.setName((String) map.get(NAME));
+                newUser.setEmail((String) map.get(EMAIL));
+                newUser.setProfilePictureUrl((String) map.get(PICTURE));
                 return userRepository.save(newUser);
             });
         };

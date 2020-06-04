@@ -5,7 +5,6 @@ Vue.component('group-view', {
         test() {
             axios.get(GROUPS_URL + IS_GROUP_HAS_CARDS + "/" + this.group.id).then(response => {
                 let isGroupHasCards = response.data;
-                console.log(isGroupHasCards);
                 if (isGroupHasCards) {
                     window.location.href = TEST + "/" + this.group.id;
                 } else {

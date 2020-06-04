@@ -66,6 +66,14 @@ public class MainController {
         return "create-cards";
     }
 
+    @GetMapping("user-name-url")
+    @ResponseBody
+    public String getUserName() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        return user.getName();
+    }
+
     @GetMapping("user-img-url")
     @ResponseBody
     public String getUserImageUrl() {

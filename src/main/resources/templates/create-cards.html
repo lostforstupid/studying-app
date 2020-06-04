@@ -27,14 +27,15 @@
 
     <div id="app">
         <div>
-            <v-app-bar dense>
-                <h1>Studying app</h1>
+            <v-app-bar class="app-bar" dense prominent>
+                <v-toolbar-title>Flashcards</v-toolbar-title>
                 <div class="toolbar-buttons">
-                    <v-btn small href="/">Groups</v-btn>
-                    <v-btn small href="/create-group">Create group</v-btn>
-                    <v-btn small href="/create-cards">Create cards</v-btn>
+                    <v-btn text href="/">Groups</v-btn>
+                    <v-btn text href="/create-group">Create group</v-btn>
+                    <v-btn text href="/create-cards">Create cards</v-btn>
                 </div>
                 <v-spacer></v-spacer>
+                <p class="user-name">{{ userName }}</p>
                 <img class="profile-picture" :src="userImgUrl"/>
             </v-app-bar>
             <v-select :options="groups"

@@ -18,6 +18,7 @@ new Vue({
         cards: [],
         idsOfCardsToDelete: [],
         selected: null,
+        userName: '',
         userImgUrl: ''
     },
     created: function () {
@@ -42,6 +43,9 @@ new Vue({
         }
         axios.get(USER_IMG_URL).then(response => {
             this.userImgUrl = response.data;
+        });
+        axios.get(USER_NAME_URL).then(response => {
+            this.userName = response.data;
         });
     },
     methods: {
