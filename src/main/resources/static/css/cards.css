@@ -21,6 +21,10 @@
     margin-top: 7px;
 }
 
+#back-textarea {
+    margin-left: 15px;
+}
+
 .remove-card-button {
     margin-left: 25px;
 }

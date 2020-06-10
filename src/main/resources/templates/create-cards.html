@@ -59,13 +59,15 @@
                         <p class="card-index">{{ card.index }}.</p>
                     </v-col>
                     <v-col>
-                        <v-textarea class="create-cards-textarea"
+                        <v-textarea id="front-textarea"
+                                    class="create-cards-textarea"
                                     name="input-7-1"
                                     label="Front"
                                     v-model="card.front"></v-textarea>
                     </v-col>
                     <v-col>
-                        <v-textarea class="create-cards-textarea"
+                        <v-textarea id="back-textarea"
+                                    class="create-cards-textarea"
                                     name="input-7-1"
                                     label="Back"
                                     v-model="card.back"></v-textarea>
